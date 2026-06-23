@@ -131,8 +131,10 @@ interface IData {
     limit: number;
 }
 
-await axios.get('https://dummyjson.com/users').then(({data}): IData => data).catch((err: unknown) => {
-    if(err instanceof Error){
+await axios.get('https://dummyjson.com/users').then(({data}): IData => data).then((data) => {
+    console.log(data.users.map((user: IUser) => ({name: user.firstName, gender: user.gender})))
+}).catch((err: unknown) => {
+    if (err instanceof Error) {
         console.log(err)
     }
 });
