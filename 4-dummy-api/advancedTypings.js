@@ -49,7 +49,9 @@ var CardType;
     CardType["AE"] = "American Express";
     CardType["UNIONPAY"] = "UnionPay";
 })(CardType || (CardType = {}));
-await axios.get('https://dummyjson.com/users').then(({ data }) => data).catch((err) => {
+await axios.get('https://dummyjson.com/users').then(({ data }) => data).then((data) => {
+    console.log(data.users.map((user) => ({ name: user.firstName, gender: user.gender })));
+}).catch((err) => {
     if (err instanceof Error) {
         console.log(err);
     }
